@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherForecast", "WeatherForecast\WeatherForecast.csproj", "{B369B91C-5485-4C78-A723-9C73AA9B2C1E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "APIClient", "APIClient\APIClient.csproj", "{7674C117-1737-4AB6-B39A-8AE0D82F1FF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{B369B91C-5485-4C78-A723-9C73AA9B2C1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B369B91C-5485-4C78-A723-9C73AA9B2C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B369B91C-5485-4C78-A723-9C73AA9B2C1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7674C117-1737-4AB6-B39A-8AE0D82F1FF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7674C117-1737-4AB6-B39A-8AE0D82F1FF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7674C117-1737-4AB6-B39A-8AE0D82F1FF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7674C117-1737-4AB6-B39A-8AE0D82F1FF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
