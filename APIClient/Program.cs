@@ -11,21 +11,20 @@ namespace ProductStoreClient
     {
         static async Task Main()
         {
-            var weatherForecast = new WeatherForecastApi("https://localhost:7016/");
+            var weatherForecastApi = new WeatherForecastApi("https://localhost:7016/");
 
-            var result = await weatherForecast.GetWeatherForecastList();
+            var weatherForecast = await weatherForecastApi.Get<List<WeatherForecast>>("WeatherForecast");
 
-            foreach (var item in result)
+            var localImpact = await weatherForecastApi.Get<List<LocalImpact>>("localImpact");
+
+            foreach (var item in weatherForecast)
             {
                 Console.WriteLine(item.Summary);
             }
 
-
-            var localImpact = await weatherForecast.GetLocalImpactList();
-
             foreach (var item in localImpact)
             {
-                Console.WriteLine(item.Location);
+                Console.WriteLine(item.LocationDamage);
             }
         }
     }

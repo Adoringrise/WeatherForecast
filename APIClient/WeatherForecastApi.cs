@@ -17,7 +17,8 @@ namespace APIClient
             this.uri = uri;            
         }
 
-        public async Task<List<WeatherForecast>> GetWeatherForecastList()
+
+        public async Task<T> Get<T>(string endpoint)
         {
             var client = new HttpClient();
 
@@ -27,22 +28,23 @@ namespace APIClient
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var result = await client.GetFromJsonAsync<List<WeatherForecast>>("WeatherForecast");
+            var result = await client.GetFromJsonAsync<T>(endpoint);
 
             return result;
         }
 
+        [Obsolete("use Get method instead")]
+        public async Task<List<WeatherForecast>> GetWeatherForecastList()
+        {
+            var result = await this.Get<List<WeatherForecast>>("WeatherForecats");
+
+            return result;
+        }
+
+        [Obsolete("use Get method instead")]
         public async Task<List<LocalImpact>> GetLocalImpactList()
         {
-            var client = new HttpClient();
-
-            client.BaseAddress = new Uri(this.uri);
-
-            client.DefaultRequestHeaders.Accept.Clear();
-
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
-            var result = await client.GetFromJsonAsync<List<LocalImpact>>("localImpact");
+            var result = await this.Get<List<LocalImpact>>("localImpact");
 
             return result;
         }
