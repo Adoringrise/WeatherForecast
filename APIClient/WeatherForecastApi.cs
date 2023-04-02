@@ -31,5 +31,20 @@ namespace APIClient
 
             return result;
         }
+
+        public async Task<List<LocalImpact>> GetLocalImpactList()
+        {
+            var client = new HttpClient();
+
+            client.BaseAddress = new Uri(this.uri);
+
+            client.DefaultRequestHeaders.Accept.Clear();
+
+            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var result = await client.GetFromJsonAsync<List<LocalImpact>>("localImpact");
+
+            return result;
+        }
     }
 }

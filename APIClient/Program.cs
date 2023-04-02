@@ -19,6 +19,14 @@ namespace ProductStoreClient
             {
                 Console.WriteLine(item.Summary);
             }
+
+
+            var localImpact = await weatherForecast.GetLocalImpactList();
+
+            foreach (var item in localImpact)
+            {
+                Console.WriteLine(item.Location);
+            }
         }
     }
 }

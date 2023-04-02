@@ -18,11 +18,19 @@ namespace WeatherForecast.Controllers
 
         static List<WeatherForecast> WeatherForecast = new();
 
+        static List<LocalImpact> LocalImpacts = new();
+
 
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
             return WeatherForecast;
+        }
+
+        [HttpGet("/localImpact")]
+        public IEnumerable<LocalImpact> GetLocationDamage()
+        {
+            return LocalImpacts;
         }
 
 
@@ -32,6 +40,13 @@ namespace WeatherForecast.Controllers
         {
             WeatherForecast.AddRange(weather);
             return weather;
+        }
+        
+        [HttpPost("/localImpact")]
+        public List<LocalImpact> Insert(List<LocalImpact> location)
+        {
+            LocalImpacts.AddRange(location);
+            return location;
         }
     }
 }
