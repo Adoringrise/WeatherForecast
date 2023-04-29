@@ -7,15 +7,22 @@ using System.Threading.Tasks;
 
 namespace ProductStoreClient
 {
+    static class Constants
+    {
+
+        public const string ApiUrl = "https://localhost:7016/";
+        public const string WeatherForecastEndpointName = "WeatherForecast";
+        public const string localImpactEndpointName = "localImpact";
+    }
     class Program
     {
         static async Task Main()
         {
-            var weatherForecastApi = new WeatherForecastApi("https://localhost:7016/");
+            var weatherForecastApi = new WeatherForecastApi(Constants.ApiUrl);
 
-            var weatherForecast = await weatherForecastApi.Get<List<WeatherForecast>>("WeatherForecast");
+            var weatherForecast = await weatherForecastApi.Get<List<WeatherForecast>>(Constants.WeatherForecastEndpointName);
 
-            var localImpact = await weatherForecastApi.Get<List<LocalImpact>>("localImpact");
+            var localImpact = await weatherForecastApi.Get<List<LocalImpact>>(Constants.localImpactEndpointName);
 
             foreach (var item in weatherForecast)
             {
