@@ -1,28 +1,35 @@
 ﻿using APIClient;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 
-namespace ProductStoreClient
-{
-    static class Constants
-    {
 
-        public const string ApiUrl = "https://localhost:7016/";
-        public const string WeatherForecastEndpointName = "WeatherForecast";
-        public const string localImpactEndpointName = "localImpact";
-    }
+namespace APIClient
+{
     class Program
     {
+        const string WeatherForecastEndpointName = "/WeatherForecast";
+        const string localImpactEndpointName = "/localImpact";
+
         static async Task Main()
         {
-            var weatherForecastApi = new WeatherForecastApi(Constants.ApiUrl);
 
-            var weatherForecast = await weatherForecastApi.Get<List<WeatherForecast>>(Constants.WeatherForecastEndpointName);
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appSettings.json", optional: false);
 
-            var localImpact = await weatherForecastApi.Get<List<LocalImpact>>(Constants.localImpactEndpointName);
+            IConfiguration config = builder.Build();
+
+            var apiUrl = config["apiUrl"];
+
+            var weatherForecastApi = new WeatherForecastApi(apiUrl);
+
+            var weatherForecast = await weatherForecastApi.Get<List<WeatherForecast>>(WeatherForecastEndpointName);
+
+            var localImpact = await weatherForecastApi.Get<List<LocalImpact>>(localImpactEndpointName);
 
             foreach (var item in weatherForecast)
             {

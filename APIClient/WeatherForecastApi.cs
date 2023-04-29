@@ -11,12 +11,12 @@ namespace APIClient
     internal class WeatherForecastApi
     {
         private string uri;
-        const string obsoleteInfo = "use Get method instead";
-        const string WeatherForecastEndpointName = "WeatherForecast";
-        public const string localImpactEndpointName = "localImpact";
+        const string WeatherForecastEndpointName = "/WeatherForecast";
+        const string LocalImpactEndpointName = "/localImpact";
 
         public WeatherForecastApi(string uri)
         {
+
             this.uri = uri;
         }
 
@@ -36,7 +36,7 @@ namespace APIClient
             return result;
         }
 
-        [Obsolete(obsoleteInfo)]
+        [Obsolete("use Get method instead")]
         public async Task<List<WeatherForecast>> GetWeatherForecastList()
         {
             var result = await this.Get<List<WeatherForecast>>(WeatherForecastEndpointName);
@@ -44,10 +44,10 @@ namespace APIClient
             return result;
         }
 
-        [Obsolete(obsoleteInfo)]
+        [Obsolete("use Get method instead")]
         public async Task<List<LocalImpact>> GetLocalImpactList()
         {
-            var result = await this.Get<List<LocalImpact>>(localImpactEndpointName);
+            var result = await this.Get<List<LocalImpact>>(LocalImpactEndpointName);
 
             return result;
         }
