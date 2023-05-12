@@ -11,13 +11,17 @@ namespace APIClient
     internal class WeatherForecastApi
     {
         private string uri;
+        const string WeatherForecastEndpointName = "/WeatherForecast";
+        const string LocalImpactEndpointName = "/localImpact";
 
         public WeatherForecastApi(string uri)
         {
-            this.uri = uri;            
+
+            this.uri = uri;
         }
 
-        public async Task<List<WeatherForecast>> GetWeatherForecastList()
+
+        public async Task<T> Get<T>(string endpoint)
         {
             var client = new HttpClient();
 
@@ -27,7 +31,23 @@ namespace APIClient
 
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            var result = await client.GetFromJsonAsync<List<WeatherForecast>>("WeatherForecast");
+            var result = await client.GetFromJsonAsync<T>(endpoint);
+
+            return result;
+        }
+
+        [Obsolete("use Get method instead")]
+        public async Task<List<WeatherForecast>> GetWeatherForecastList()
+        {
+            var result = await this.Get<List<WeatherForecast>>(WeatherForecastEndpointName);
+
+            return result;
+        }
+
+        [Obsolete("use Get method instead")]
+        public async Task<List<LocalImpact>> GetLocalImpactList()
+        {
+            var result = await this.Get<List<LocalImpact>>(LocalImpactEndpointName);
 
             return result;
         }
